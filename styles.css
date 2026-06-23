@@ -210,6 +210,22 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
 .portrait-placeholder p, .portrait-note { margin: 0; }
 .portrait-note { padding: 18px 8px 4px; color: var(--muted); font-weight: 700; line-height: 1.35; }
 
+.work-process {
+  padding: clamp(28px, 5vw, 58px);
+  border: 1px solid var(--line);
+  border-radius: 36px;
+  background: rgba(255,255,255,0.78);
+  box-shadow: var(--shadow);
+}
+.work-process .section-heading p:last-child { color: var(--muted); line-height: 1.6; }
+.work-process-content { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr); gap: clamp(24px, 5vw, 56px); align-items: start; }
+.work-process-copy { display: grid; gap: 18px; justify-items: start; }
+.work-process-copy p { margin: 0; color: var(--blue); font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.5; }
+.work-process-steps { padding: 28px; border-radius: 28px; color: white; background: var(--graphite); }
+.work-process-steps h3 { margin: 0 0 20px; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1.05; letter-spacing: -0.04em; }
+.work-process-steps ol { display: grid; gap: 14px; margin: 0; padding-left: 22px; }
+.work-process-steps li { padding-left: 6px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+
 .choice-block, .about, .final-cta {
   padding: clamp(28px, 5vw, 58px);
   border-radius: 36px;
@@ -236,6 +252,7 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
   .route-grid, .project-grid, .task-grid { grid-template-columns: repeat(2, 1fr); }
   .section-heading.wide { display: block; }
+  .work-process-content { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -252,6 +269,6 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .cards-grid, .route-grid, .project-grid, .task-grid { grid-template-columns: 1fr; }
   .card { min-height: auto; padding: 21px; border-radius: 24px; }
   .hero-actions, .button { width: 100%; }
-  .choice-block, .about, .final-cta, .route-card, .project-card { border-radius: 28px; }
+  .choice-block, .about, .final-cta, .work-process, .route-card, .project-card { border-radius: 28px; }
   .portrait-card { min-height: auto; transform: none; }
 }
