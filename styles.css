@@ -93,6 +93,8 @@ h2 { font-size: clamp(2.1rem, 5vw, 4.8rem); line-height: 0.95; letter-spacing: -
   line-height: 1.35;
 }
 
+.hero-directions { max-width: 820px; color: var(--berry); font-weight: 800; line-height: 1.55; }
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
 
 .button {
@@ -194,6 +196,7 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
 .routes, .projects { scroll-margin-top: 24px; }
 
 .route-grid, .project-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.task-grid { grid-template-columns: repeat(3, 1fr); }
 .route-card, .project-card { position: relative; overflow: hidden; min-height: 260px; padding: 24px; border: 1px solid var(--line); border-radius: 32px; background: rgba(255,255,255,0.78); box-shadow: 0 14px 42px rgba(16,26,51,0.08); }
 .route-card::after { content: ''; position: absolute; right: -42px; bottom: -42px; width: 132px; height: 132px; border-radius: 50%; background: rgba(109,56,255,0.12); }
 .route-card span, .project-card span { color: var(--berry); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -231,7 +234,7 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .hero-content { grid-template-columns: 1fr; }
   .portrait-card { min-height: 420px; transform: none; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .route-grid, .project-grid { grid-template-columns: repeat(2, 1fr); }
+  .route-grid, .project-grid, .task-grid { grid-template-columns: repeat(2, 1fr); }
   .section-heading.wide { display: block; }
 }
 
@@ -246,7 +249,7 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .search-panel { padding: 16px; border-radius: 24px; }
   .filters { gap: 8px; }
   .filter-button { padding: 9px 12px; font-size: 0.9rem; }
-  .cards-grid, .route-grid, .project-grid { grid-template-columns: 1fr; }
+  .cards-grid, .route-grid, .project-grid, .task-grid { grid-template-columns: 1fr; }
   .card { min-height: auto; padding: 21px; border-radius: 24px; }
   .hero-actions, .button { width: 100%; }
   .choice-block, .about, .final-cta, .route-card, .project-card { border-radius: 28px; }
