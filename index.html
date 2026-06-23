@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вероника Житникова — навигатор возможностей</title>
+  <meta name="description" content="Дизайн, упаковка, ИИ, контент и визуальные системы для брендов, проектов и людей.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Главная навигация">
+      <a class="logo" href="#top">ВЖ</a>
+      <a class="nav-link" href="#catalog">Возможности</a>
+    </nav>
+
+    <section class="hero-content" id="top">
+      <p class="eyebrow">Навигатор по возможностям</p>
+      <h1>Вероника Житникова</h1>
+      <p class="hero-subtitle">Дизайн, упаковка, ИИ, контент и визуальные системы для брендов, проектов и людей, которым нужно собрать идею в понятную форму.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#catalog">Посмотреть возможности</a>
+        <a class="button secondary" href="https://t.me/" target="_blank" rel="noreferrer">Написать</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="search-section" aria-labelledby="search-title">
+      <div class="section-heading">
+        <p class="eyebrow">Поиск по направлениям</p>
+        <h2 id="search-title">Что вам нужно найти?</h2>
+      </div>
+      <div class="search-panel">
+        <label class="visually-hidden" for="searchInput">Что вам нужно найти?</label>
+        <input id="searchInput" type="search" placeholder="Что вам нужно найти?" autocomplete="off">
+        <div class="filters" aria-label="Фильтры каталога">
+          <button class="filter-button" type="button" data-category="упаковка">упаковка</button>
+          <button class="filter-button" type="button" data-category="ИИ">ИИ</button>
+          <button class="filter-button" type="button" data-category="брендинг">брендинг</button>
+          <button class="filter-button" type="button" data-category="контент">контент</button>
+          <button class="filter-button" type="button" data-category="сайты">сайты</button>
+          <button class="filter-button" type="button" data-category="автоматизация">автоматизация</button>
+          <button class="filter-button" type="button" data-category="консультации">консультации</button>
+          <button class="filter-button" type="button" data-category="портфолио">портфолио</button>
+          <button class="filter-button reset" type="button" id="resetFilters">сбросить</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading wide">
+        <p class="eyebrow">Каталог</p>
+        <h2 id="catalog-title">С чем можно прийти</h2>
+        <p>Выберите направление, найдите похожую задачу или просто напишите, если хочется собрать запрос вместе.</p>
+      </div>
+      <div class="cards-grid" id="cardsGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуйте другой запрос.</p>
+    </section>
+
+    <section class="choice-block" aria-labelledby="choice-title">
+      <div class="section-heading">
+        <p class="eyebrow">Как выбрать</p>
+        <h2 id="choice-title">С чего начать</h2>
+      </div>
+      <div class="choice-list">
+        <p><span>01</span> Если есть продукт, но упаковка слабая, начать с упаковки или редизайна.</p>
+        <p><span>02</span> Если есть идея, но нет формы, начать с визуальной концепции.</p>
+        <p><span>03</span> Если нужно быстрее делать контент, начать с контент-системы.</p>
+        <p><span>04</span> Если в работе хаос, начать с автоматизации.</p>
+        <p><span>05</span> Если непонятно, что выбрать, написать и описать задачу.</p>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="about-title">
+      <p class="eyebrow">Обо мне</p>
+      <h2 id="about-title">Собираю идеи в визуальные системы</h2>
+      <p>Я соединяю дизайн, насмотренность, работу с брендами и ИИ-инструменты. Мне интересно превращать хаос идей в понятные визуальные системы: упаковку, сайты, презентации, контент и рабочие процессы.</p>
+    </section>
+
+    <section class="final-cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">Если у вас есть задача, но пока нет понятной формы, напишите мне.</h2>
+      <a class="button primary" href="https://t.me/" target="_blank" rel="noreferrer">Написать в Telegram</a>
+    </section>
+  </main>
+
+  <script src="opportunities.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
