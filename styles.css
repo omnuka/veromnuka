@@ -106,8 +106,8 @@ h1 {
   max-width: 980px;
   margin-bottom: 28px;
   font-size: clamp(4.2rem, 8.8vw, 8.8rem);
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.88;
+  letter-spacing: -0.015em;
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -115,8 +115,8 @@ h1 {
 h2 {
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 5vw, 4.8rem);
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -227,8 +227,8 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   margin: 34px 0 12px;
   font-family: var(--font-display);
   font-size: 1.45rem;
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -296,8 +296,8 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   margin: 0 0 20px;
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 2.5vw, 2.2rem);
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -341,8 +341,16 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .hero { min-height: auto; }
   .nav { grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 18px 0; }
   .hero-content { padding: 54px 0 80px; }
+  h1, h2 {
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+  }
   h1 { font-size: clamp(3.2rem, 15vw, 5.2rem); }
   h2 { font-size: clamp(2rem, 12vw, 3.6rem); }
+  .route-card h3, .project-card h3, .work-process-steps h3 {
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+  }
   section { margin-bottom: 72px; }
   .search-panel, .search-results { padding: 16px; border-radius: 24px; }
   .cards-grid, .route-grid, .project-grid, .task-grid { grid-template-columns: 1fr; }
