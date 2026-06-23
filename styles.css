@@ -236,8 +236,11 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   height: 108px;
   border-radius: 34% 66% 58% 42%;
   background: linear-gradient(135deg, rgba(109,56,255,0.2), rgba(89,215,255,0.22));
+  opacity: 1;
   transform: rotate(-12deg);
+  transition: transform var(--card-transition), opacity var(--card-transition);
 }
+.trust-card:hover::before { transform: rotate(-8deg) scale(1.06); }
 .trust-card h3 { margin-top: 46px; font-size: clamp(2rem, 4vw, 3.4rem); }
 .trust-card p { max-width: 560px; }
 .trust-card .button { align-self: flex-start; margin-top: auto; position: relative; z-index: 1; }
