@@ -91,6 +91,8 @@ function createCard(opportunity) {
     <a class="card-cta" href="https://t.me/omnuka" target="_blank" rel="noreferrer">${opportunity.ctaText} →</a>
   `;
 
+  prepareAnimatedCard(card);
+
   return card;
 }
 
@@ -153,5 +155,68 @@ function renderSearchResults() {
 
 searchInput.addEventListener('input', renderSearchResults);
 
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const canUseDesktopTilt = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 901px)');
+const animatedCardSelector = '.card, .route-card, .project-card';
+let revealObserver;
+
+function setupCardReveal(card) {
+  if (motionQuery.matches) {
+    card.classList.add('is-visible');
+    return;
+  }
+
+  card.classList.add('reveal-on-scroll');
+
+  if (revealObserver) {
+    revealObserver.observe(card);
+  }
+}
+
+function setupCardTilt(card) {
+  if (!canUseDesktopTilt.matches || motionQuery.matches) {
+    return;
+  }
+
+  card.addEventListener('pointermove', (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    card.style.setProperty('--tilt-x', `${(-y * 4).toFixed(2)}deg`);
+    card.style.setProperty('--tilt-y', `${(x * 5).toFixed(2)}deg`);
+    card.style.setProperty('--glow-x', `${((x + 0.5) * 100).toFixed(1)}%`);
+    card.style.setProperty('--glow-y', `${((y + 0.5) * 100).toFixed(1)}%`);
+  });
+
+  card.addEventListener('pointerleave', () => {
+    card.style.removeProperty('--tilt-x');
+    card.style.removeProperty('--tilt-y');
+    card.style.removeProperty('--glow-x');
+    card.style.removeProperty('--glow-y');
+  });
+}
+
+function prepareAnimatedCard(card) {
+  setupCardReveal(card);
+  setupCardTilt(card);
+}
+
+function initCardMotion() {
+  if (!motionQuery.matches && 'IntersectionObserver' in window) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  }
+
+  document.querySelectorAll(animatedCardSelector).forEach(prepareAnimatedCard);
+}
+
 renderCatalogCards();
 typographText();
+initCardMotion();
