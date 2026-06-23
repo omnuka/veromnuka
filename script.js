@@ -47,7 +47,24 @@ function typographText(root = document.body) {
 }
 
 function normalizeText(value) {
-  return String(value ?? '').toLowerCase().trim();
+  return String(value ?? '').replace(/\u00a0/g, ' ').toLowerCase().trim();
+}
+
+function createDetails(opportunity) {
+  const details = [
+    ['Для кого', opportunity.forWhom],
+    ['Что могу сделать', opportunity.whatICanDo],
+    ['Результат', opportunity.result]
+  ].filter(([, text]) => Boolean(text));
+
+  if (!details.length) {
+    return '';
+  }
+
+  return `
+    <div class="card-details">
+      ${details.map(([label, text]) => `<p><strong>${label}</strong>${text}</p>`).join('')}
+    </div>`;
 }
 
 function createCard(opportunity) {
@@ -63,9 +80,7 @@ function createCard(opportunity) {
     <div class="tags">
       ${opportunity.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
     </div>
-    <p><strong>Для кого</strong>${opportunity.forWhom}</p>
-    <p><strong>Что могу сделать</strong>${opportunity.whatICanDo}</p>
-    <p><strong>Результат</strong>${opportunity.result}</p>
+    ${createDetails(opportunity)}
     <a class="card-cta" href="https://t.me/omnuka" target="_blank" rel="noreferrer">${opportunity.ctaText} →</a>
   `;
 
