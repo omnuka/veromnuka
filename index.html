@@ -14,12 +14,25 @@
   <header class="hero" id="top">
     <nav class="nav" aria-label="Главная навигация">
       <a class="logo" href="#top">V</a>
+      <div class="nav-search">
+        <label class="visually-hidden" for="searchInput">Найти услугу</label>
+        <input id="searchInput" type="search" placeholder="Найти услугу: упаковка, стратегия, сайт" autocomplete="off">
+      </div>
       <div class="nav-links">
         <a class="nav-link" href="#start">С какой задачей</a>
         <a class="nav-link" href="#catalog">Направления</a>
         <a class="nav-link" href="#projects">Проекты</a>
       </div>
     </nav>
+
+    <section class="search-results" id="searchResults" aria-live="polite" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">Результаты поиска</p>
+        <h2>Подходящие услуги</h2>
+      </div>
+      <div class="cards-grid search-results-grid" id="searchResultsGrid"></div>
+      <p class="empty-state" id="searchEmptyState" hidden>По этому запросу ничего не найдено. Попробуйте другое слово: упаковка, сайт, стратегия, аудит.</p>
+    </section>
 
     <section class="hero-content" aria-labelledby="hero-title">
       <div class="hero-copy">
@@ -62,37 +75,15 @@
       </div>
     </section>
 
-    <section class="search-section" aria-labelledby="search-title">
-      <div class="section-heading">
-        <p class="eyebrow">Поиск по направлениям</p>
-        <h2 id="search-title">Найдите свою задачу</h2>
-        <p>Кнопки работают как точные категории, а поиск шире: смотрит по текстам карточек, тегам и результатам.</p>
-      </div>
-      <div class="search-panel">
-        <label class="visually-hidden" for="searchInput">Что вам нужно найти?</label>
-        <input id="searchInput" type="search" placeholder="Например: аудит упаковки, B2B-сайт, каталог, айдентика" autocomplete="off">
-        <div class="filters" aria-label="Фильтры направлений">
-          <button class="filter-button" type="button" data-category="стратегия">стратегия</button>
-          <button class="filter-button" type="button" data-category="упаковка">упаковка</button>
-          <button class="filter-button" type="button" data-category="айдентика">айдентика</button>
-          <button class="filter-button" type="button" data-category="продажи">продажи</button>
-          <button class="filter-button" type="button" data-category="сайты">сайты</button>
-          <button class="filter-button" type="button" data-category="аудит">аудит</button>
-          <button class="filter-button reset" type="button" id="resetFilters">сбросить</button>
-        </div>
-      </div>
-    </section>
-
     <section class="catalog" id="catalog" aria-labelledby="catalog-title">
       <div class="section-heading wide">
         <div>
           <p class="eyebrow">Направления работы</p>
-          <h2 id="catalog-title">12 направлений, которые можно собрать</h2>
+          <h2 id="catalog-title">14 направлений, которые можно собрать</h2>
         </div>
         <p>Каждая карточка показывает конкретное направление: бренд-стратегия, дизайн упаковки FMCG, айдентика бренда, презентация для продаж, каталог для компании, B2B-сайт производителя или аудит упаковки.</p>
       </div>
       <div class="cards-grid" id="cardsGrid"></div>
-      <p class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуйте другой запрос.</p>
     </section>
 
     <section class="projects" id="projects" aria-labelledby="projects-title">

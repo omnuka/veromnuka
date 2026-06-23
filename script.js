@@ -1,10 +1,8 @@
 const cardsGrid = document.querySelector('#cardsGrid');
 const searchInput = document.querySelector('#searchInput');
-const filterButtons = document.querySelectorAll('.filter-button[data-category]');
-const resetButton = document.querySelector('#resetFilters');
-const emptyState = document.querySelector('#emptyState');
-
-let activeCategory = '';
+const searchResults = document.querySelector('#searchResults');
+const searchResultsGrid = document.querySelector('#searchResultsGrid');
+const searchEmptyState = document.querySelector('#searchEmptyState');
 
 const typographShortWords = [
   'в', 'во', 'к', 'ко', 'с', 'со', 'у', 'о', 'об', 'от', 'до', 'за', 'из', 'на', 'по',
@@ -100,49 +98,38 @@ function getSearchableText(opportunity) {
 }
 
 function matchesSearch(opportunity, query) {
-  return !query || normalizeText(getSearchableText(opportunity)).includes(query);
+  return normalizeText(getSearchableText(opportunity)).includes(query);
 }
 
-function matchesCategory(opportunity) {
-  return !activeCategory || normalizeText(opportunity.category) === normalizeText(activeCategory);
-}
-
-function renderCards() {
-  const query = normalizeText(searchInput.value);
-  const filteredOpportunities = opportunities.filter((opportunity) => (
-    matchesCategory(opportunity) && matchesSearch(opportunity, query)
-  ));
-
+function renderCatalogCards() {
   cardsGrid.innerHTML = '';
-  filteredOpportunities.forEach((opportunity) => {
+  opportunities.forEach((opportunity) => {
     cardsGrid.appendChild(createCard(opportunity));
   });
-
-  emptyState.hidden = filteredOpportunities.length > 0;
-  typographText();
 }
 
-function setActiveFilter(category) {
-  activeCategory = activeCategory === category ? '' : category;
+function renderSearchResults() {
+  const query = normalizeText(searchInput.value);
 
-  filterButtons.forEach((button) => {
-    button.classList.toggle('active', button.dataset.category === activeCategory);
+  if (!query) {
+    searchResults.hidden = true;
+    searchResultsGrid.innerHTML = '';
+    searchEmptyState.hidden = true;
+    return;
+  }
+
+  const filteredOpportunities = opportunities.filter((opportunity) => matchesSearch(opportunity, query));
+
+  searchResults.hidden = false;
+  searchResultsGrid.innerHTML = '';
+  filteredOpportunities.forEach((opportunity) => {
+    searchResultsGrid.appendChild(createCard(opportunity));
   });
-
-  renderCards();
+  searchEmptyState.hidden = filteredOpportunities.length > 0;
+  typographText(searchResults);
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => setActiveFilter(button.dataset.category));
-});
+searchInput.addEventListener('input', renderSearchResults);
 
-resetButton.addEventListener('click', () => {
-  activeCategory = '';
-  searchInput.value = '';
-  filterButtons.forEach((button) => button.classList.remove('active'));
-  renderCards();
-});
-
-searchInput.addEventListener('input', renderCards);
-
-renderCards();
+renderCatalogCards();
+typographText();
