@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('fonts/PPNeueMachina-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Old Soviet';
+  src: url('fonts/Old-Soviet.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --milk: #eef1f7;
   --paper: #ffffff;
@@ -10,6 +26,8 @@
   --acid: #b7ff4a;
   --cyan: #59d7ff;
   --shadow: 0 24px 80px rgba(16, 26, 51, 0.12);
+  --font-main: "PP Neue Machina", Arial, sans-serif;
+  --font-display: "Old Soviet", "PP Neue Machina", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -18,7 +36,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: var(--font-main);
   color: var(--graphite);
   background:
     linear-gradient(120deg, rgba(255,255,255,0.78), rgba(238,241,247,0.9)),
@@ -87,14 +105,24 @@ body::before {
 h1, h2, p { margin-top: 0; }
 
 h1 {
+  font-family: var(--font-display);
   max-width: 980px;
   margin-bottom: 28px;
   font-size: clamp(4.2rem, 8.8vw, 8.8rem);
   line-height: 0.82;
-  letter-spacing: -0.09em;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
-h2 { font-size: clamp(2.1rem, 5vw, 4.8rem); line-height: 0.95; letter-spacing: -0.06em; }
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
 
 .hero-subtitle {
   max-width: 820px;
@@ -198,7 +226,15 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
 .route-card, .project-card { position: relative; overflow: hidden; min-height: 260px; padding: 24px; border: 1px solid var(--line); border-radius: 32px; background: rgba(255,255,255,0.78); box-shadow: 0 14px 42px rgba(16,26,51,0.08); }
 .route-card::after { content: ''; position: absolute; right: -42px; bottom: -42px; width: 132px; height: 132px; border-radius: 50%; background: rgba(109,56,255,0.12); }
 .route-card span, .project-card span { color: var(--berry); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
-.route-card h3, .project-card h3 { margin: 34px 0 12px; font-size: 1.45rem; line-height: 1.05; letter-spacing: -0.04em; }
+.route-card h3, .project-card h3 {
+  margin: 34px 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
 .route-card p, .project-card p { color: var(--muted); line-height: 1.55; }
 .project-card > div { aspect-ratio: 1.25; margin: -8px -8px 18px; border-radius: 24px; border: 1px dashed rgba(23,26,32,0.24); background: linear-gradient(135deg, rgba(109,56,255,0.18), rgba(89,215,255,0.2)); }
 .trust-card {
@@ -259,7 +295,15 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
 .work-process-copy { display: grid; gap: 18px; justify-items: start; }
 .work-process-copy p { margin: 0; color: var(--blue); font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.5; }
 .work-process-steps { padding: 28px; border-radius: 28px; color: white; background: var(--graphite); }
-.work-process-steps h3 { margin: 0 0 20px; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1.05; letter-spacing: -0.04em; }
+.work-process-steps h3 {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
 .work-process-steps ol { display: grid; gap: 14px; margin: 0; padding-left: 22px; }
 .work-process-steps li { padding-left: 6px; color: rgba(255,255,255,0.82); line-height: 1.55; }
 
@@ -303,7 +347,8 @@ input[type='search']:focus { border-color: var(--berry); box-shadow: 0 0 0 4px r
   .nav-search { order: 3; grid-column: 1 / -1; width: 100%; }
   .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 10px 14px; font-size: 0.9rem; }
   .hero-content { padding: 54px 0 80px; }
-  h1 { font-size: clamp(3.5rem, 17vw, 5.6rem); }
+  h1 { font-size: clamp(3.2rem, 15vw, 5.2rem); }
+  h2 { font-size: clamp(2rem, 12vw, 3.6rem); }
   section { margin-bottom: 72px; }
   .search-panel, .search-results { padding: 16px; border-radius: 24px; }
   .cards-grid, .route-grid, .project-grid, .task-grid { grid-template-columns: 1fr; }
