@@ -7,7 +7,7 @@ const emptyState = document.querySelector('#emptyState');
 let activeCategory = '';
 
 function normalizeText(value) {
-  return String(value).toLowerCase().trim();
+  return String(value ?? '').toLowerCase().trim();
 }
 
 function createCard(opportunity) {
@@ -32,28 +32,31 @@ function createCard(opportunity) {
   return card;
 }
 
-function matchesSearch(opportunity, query) {
-  if (!query) return true;
-
-  const searchableText = [
+function getSearchableText(opportunity) {
+  return [
     opportunity.title,
     opportunity.category,
+    opportunity.tags,
     opportunity.shortDescription,
     opportunity.forWhom,
     opportunity.whatICanDo,
-    opportunity.result,
-    opportunity.tags.join(' ')
-  ].join(' ');
+    opportunity.result
+  ].flat().join(' ');
+}
 
-  return normalizeText(searchableText).includes(query);
+function matchesSearch(opportunity, query) {
+  return !query || normalizeText(getSearchableText(opportunity)).includes(query);
+}
+
+function matchesCategory(opportunity) {
+  return !activeCategory || normalizeText(opportunity.category) === normalizeText(activeCategory);
 }
 
 function renderCards() {
   const query = normalizeText(searchInput.value);
-  const filteredOpportunities = opportunities.filter((opportunity) => {
-    const categoryFits = !activeCategory || opportunity.category === activeCategory;
-    return categoryFits && matchesSearch(opportunity, query);
-  });
+  const filteredOpportunities = opportunities.filter((opportunity) => (
+    matchesCategory(opportunity) && matchesSearch(opportunity, query)
+  ));
 
   cardsGrid.innerHTML = '';
   filteredOpportunities.forEach((opportunity) => {
