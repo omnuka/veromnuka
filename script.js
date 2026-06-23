@@ -26,7 +26,7 @@ function createCard(opportunity) {
     <p><strong>Для кого</strong>${opportunity.forWhom}</p>
     <p><strong>Что могу сделать</strong>${opportunity.whatICanDo}</p>
     <p><strong>Результат</strong>${opportunity.result}</p>
-    <a class="card-cta" href="https://t.me/" target="_blank" rel="noreferrer">${opportunity.ctaText} →</a>
+    <a class="card-cta" href="https://t.me/omnuka" target="_blank" rel="noreferrer">${opportunity.ctaText} →</a>
   `;
 
   return card;
