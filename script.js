@@ -6,6 +6,46 @@ const emptyState = document.querySelector('#emptyState');
 
 let activeCategory = '';
 
+const typographShortWords = [
+  'в', 'во', 'к', 'ко', 'с', 'со', 'у', 'о', 'об', 'от', 'до', 'за', 'из', 'на', 'по',
+  'и', 'а', 'но', 'я', 'мы', 'вы', 'он', 'их', 'не'
+];
+const typographShortWordsPattern = new RegExp(
+  String.raw`(^|[^\p{L}\p{N}_])(${typographShortWords.join('|')})([ \t]+)(?=\S)`,
+  'giu'
+);
+const typographIgnoredTags = new Set(['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA']);
+
+function typographText(root = document.body) {
+  const walker = document.createTreeWalker(
+    root,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        const parent = node.parentElement;
+
+        if (!parent || parent.closest(Array.from(typographIgnoredTags).join(','))) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const textNodes = [];
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  textNodes.forEach((node) => {
+    node.nodeValue = node.nodeValue.replace(
+      typographShortWordsPattern,
+      (_match, before, word) => `${before}${word}\u00a0`
+    );
+  });
+}
+
 function normalizeText(value) {
   return String(value ?? '').toLowerCase().trim();
 }
@@ -64,6 +104,7 @@ function renderCards() {
   });
 
   emptyState.hidden = filteredOpportunities.length > 0;
+  typographText();
 }
 
 function setActiveFilter(category) {
