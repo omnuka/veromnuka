@@ -16,7 +16,10 @@
       <a class="logo" href="#top">V</a>
       <div class="nav-search">
         <label class="visually-hidden" for="searchInput">Найти услугу</label>
-        <input id="searchInput" type="search" placeholder="Найти услугу: упаковка, стратегия, сайт" autocomplete="off">
+        <div class="nav-search-field">
+          <input id="searchInput" type="search" placeholder="Найти услугу: упаковка, стратегия, сайт" autocomplete="off">
+          <span class="search-sticker" aria-hidden="true">Введите<br>свою<br>задачу</span>
+        </div>
       </div>
       <div class="nav-links">
         <a class="nav-link" href="#start">С какой задачей</a>
@@ -31,6 +34,11 @@
         <h2>Подходящие услуги</h2>
       </div>
       <div class="cards-grid search-results-grid" id="searchResultsGrid"></div>
+      <article class="custom-search-card" id="customSearchCard" hidden>
+        <h3>Обсудить нестандартную задачу</h3>
+        <p>Если задача связана с брендингом, продуктом, маркетингом или продажами, опишите ее в брифе. Я посмотрю вводные и предложу формат работы.</p>
+        <a class="button primary" href="#brief">Заполнить бриф</a>
+      </article>
       <p class="empty-state" id="searchEmptyState" hidden>По этому запросу ничего не найдено. Попробуйте другое слово: упаковка, сайт, стратегия, аудит.</p>
     </section>
 
@@ -79,7 +87,7 @@
       <div class="section-heading wide">
         <div>
           <p class="eyebrow">Направления работы</p>
-          <h2 id="catalog-title">14 направлений, которые можно собрать</h2>
+          <h2 id="catalog-title">14 направлений для бренда, продукта и продаж</h2>
         </div>
         <p>Каждая карточка показывает конкретное направление: бренд-стратегия, дизайн упаковки FMCG, айдентика бренда, презентация для продаж, каталог для компании, B2B-сайт производителя или аудит упаковки.</p>
       </div>

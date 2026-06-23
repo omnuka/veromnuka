@@ -3,6 +3,7 @@ const searchInput = document.querySelector('#searchInput');
 const searchResults = document.querySelector('#searchResults');
 const searchResultsGrid = document.querySelector('#searchResultsGrid');
 const searchEmptyState = document.querySelector('#searchEmptyState');
+const customSearchCard = document.querySelector('#customSearchCard');
 
 const typographShortWords = [
   'в', 'во', 'к', 'ко', 'с', 'со', 'у', 'о', 'об', 'от', 'до', 'за', 'из', 'на', 'по',
@@ -13,6 +14,14 @@ const typographShortWordsPattern = new RegExp(
   'giu'
 );
 const typographIgnoredTags = new Set(['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA']);
+
+const relatedSearchPhrases = [
+  'бренд', 'брендинг', 'брендирование', 'бренд-стратегия', 'маркетинг', 'продвижение',
+  'продажи', 'продукт', 'запуск', 'запуск продукта', 'торговая марка', 'товарный знак',
+  'упаковка', 'визуал', 'дизайн', 'реклама', 'коммуникация', 'позиционирование',
+  'аудитория', 'полка', 'закупщик', 'дистрибьютор', 'каталог', 'презентация', 'сайт',
+  'линейка', 'ребрендинг', 'спрос', 'ценность продукта'
+];
 
 function typographText(root = document.body) {
   const walker = document.createTreeWalker(
@@ -101,6 +110,14 @@ function matchesSearch(opportunity, query) {
   return normalizeText(getSearchableText(opportunity)).includes(query);
 }
 
+function isRelatedSearchQuery(query) {
+  return relatedSearchPhrases.some((phrase) => {
+    const normalizedPhrase = normalizeText(phrase);
+
+    return query.includes(normalizedPhrase) || normalizedPhrase.includes(query);
+  });
+}
+
 function renderCatalogCards() {
   cardsGrid.innerHTML = '';
   opportunities.forEach((opportunity) => {
@@ -115,6 +132,7 @@ function renderSearchResults() {
     searchResults.hidden = true;
     searchResultsGrid.innerHTML = '';
     searchEmptyState.hidden = true;
+    customSearchCard.hidden = true;
     return;
   }
 
@@ -125,7 +143,11 @@ function renderSearchResults() {
   filteredOpportunities.forEach((opportunity) => {
     searchResultsGrid.appendChild(createCard(opportunity));
   });
-  searchEmptyState.hidden = filteredOpportunities.length > 0;
+  const hasResults = filteredOpportunities.length > 0;
+  const shouldShowCustomCard = !hasResults && isRelatedSearchQuery(query);
+
+  customSearchCard.hidden = !shouldShowCustomCard;
+  searchEmptyState.hidden = hasResults || shouldShowCustomCard;
   typographText(searchResults);
 }
 
